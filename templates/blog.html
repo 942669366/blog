@@ -1,0 +1,197 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>hk的博客</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLE CSS -->
+    <link href="/static/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE CSS -->
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <!-- jquery-3.3.1.js -->
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="/static/js/zan.js"></script>
+    <script type="application/javascript">
+    function jump() {
+        pnum=document.getElementById("pn").value
+        if(pnum>{{ pnums }}|pnum<1){
+            alert("请输入正确的页数！")
+            document.getElementById("pn").value={{ pnum }}
+        }else{
+            location="/blogapp/blog/"+pnum+"/"
+        }
+    }
+</script>
+</head>
+<body>
+
+
+    <section class="header-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="/static/img/usr.gif" class="img-circle img-responsive" />
+                </div>
+                <div class="col-md-5 text-center">
+                    <h1><strong>hukai</strong></h1>
+                    <h4>我是一个小菜鸟</h4>
+                </div>
+                <div class="col-md-5">
+                    <h3>简介:</h3>
+                    我是一名正在学习Python的一名小菜鸟，在这个博客我将和大家一起分享
+                    学习Python的方法和一些有趣的小实验。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系我：<i><strong>hk@flyhki.com</strong></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 spon-txt">
+                    <span>文章：</span>
+                </div>
+                <div class="col-md-10">
+{#                    <img src="/static/img/clients.png" alt="" class="img-rounded img-responsive" />#}
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <hr />
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    {% block blog %}
+                        {% for bll in sslist %}
+                            <div class="blog-main">
+                                <div class="heading-blog">
+                                    <a href="/blogapp/news/{{ bll.blogid }}/">{{ bll.blogtitle }}</a>
+                                </div>
+{#                                 <a href="/blogapp/news/{{ bll.blogid }}/">&nbsp&nbsp&nbsp&nbsp{% if {{ bll.blogtype }}==0 %}#}
+{#                                                                                            公告：#}
+{#                                                                                               {% if {{ bll.blogtype }}==1 %}#}
+{#                                                                                                   Python 基础：#}
+{#                                                                                                   {% if {{ bll.blogtype }}==2 %}#}
+{#                                                                                                   Python Web开发#}
+{#                                                                                                       {% if {{ bll.blogtype }}==3 %}#}
+{#                                                                                                   Python 网络爬虫#}
+{#                                                                                                            {% endif %}#}
+{#                                                                                                        {% endif %}#}
+{#                                                                                                   {% endif %}#}
+{#                                                                                            {% endif %}#}
+        {#                        <img src="/static/img/1.jpg" class="img-responsive img-rounded" />#}
+{#                                     </a>#}
+                                <div class="blog-info">
+                                    <span class="label label-primary">发表时间:{{ bll.blogtime }}</span>
+                                    <span class="label label-success">阅读数:{{ bll.blogread }}</span>
+                                    <span class="label label-danger">评论数:{{ come.forloop.counter }}</span>
+                                    <span class="label label-info">
+                                        <i class="fa fa-thumbs-up">&nbsp;{{ bll.blogzan }}</i>
+                                        </span>&nbsp;
+                                        <span class="label label-info" id="{{ bll.blogid }}">
+                                            &nbsp;
+                                <i class="fa fa-thumbs-down">&nbsp;{{ bll.bloglow }}</i>
+                                    </span>
+                                </div>
+                                <div class="blog-txt">
+                                    <a href="/blogapp/news/{{ bll.blogid }}/" style="color: black">
+                                    {{ bll.blogcontenta }}······
+                                    </a>
+                                </div>
+                            </div>
+                    {% endfor %}
+
+                        <nav>{% if pnum == 1 %}
+                                <font>首页</font>
+                                <font>上一页</font>
+                            {% else %}
+                                <a href="/blogapp/blog/1/">首页</a>
+                                <a href="/blogapp/blog/{{ pnum|add:'-1' }}/">上一页</a>
+                            {% endif %}
+                                <input id="pn" style="width: 20px" type="text" value="{{ pnum }}">/{{ pnums }}
+                                <input type="button" value="跳转" onclick="jump()">
+                            {% if pnum == pnums %}
+                                <font>下一页</font>
+                                <font>尾页</font>
+                            {% else %}
+                                <a href="/blogapp/blog/{{ pnum|add:'1' }}/">下一页</a>
+                                <a href="/blogapp/blog/{{ pnums }}/">尾页</a>
+                            {% endif %}
+                        </nav>
+
+                    {% endblock %}
+                </div>
+                <div class="col-md-3">
+
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>主要分类</strong>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">{{ tong }}</span>
+                            公告
+                        <li class="list-group-item">
+                            <span class="badge">{{ pjc }}</span>
+                            Python 基础
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">{{ pweb }}</span>
+                            Python Web开发
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">{{ ppa }}</span>
+                            Python 网络爬虫
+                        </li>
+                    </ul>
+                    <br />
+
+                    <ul class="list-group">
+                        <li class="list-group-item">标语
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <img src="/static/img/p1.png" class="img-responsive" />
+                            </a>
+                            <br />
+                            <a href="#">
+                                <img src="/static/img/p2.jpg" class="img-responsive" />
+                            </a>
+                        </li>
+                    </ul>
+
+                    <br />
+{#                    <div>#}
+{#                        <div class="panel panel-default">#}
+{#                            <div class="panel-heading">#}
+{#                                <h3 class="panel-title">订阅更新</h3>#}
+{#                            </div>#}
+{#                            <div class="panel-body">#}
+{#                                <input type="text" class="form-control" placeholder="你的邮箱" />#}
+{#                                <hr />#}
+{#                                <a href="#" class="btn btn-info btn-sm btn-block">订阅</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr />
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+
+</body>
+</html>

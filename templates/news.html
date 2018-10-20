@@ -1,0 +1,46 @@
+{% extends 'blog.html' %}
+{% load static from staticfiles %}
+{% block blog %}
+    {% for bll in bl %}
+    <div class="blog-main">
+        <div class="heading-blog">
+            {{ bll.blogtitle }}
+        </div>
+{#         <a href="/blogapp/news/{{ bll.blogid }}/">#}
+{#                        <img src="/static/img/1.jpg" class="img-responsive img-rounded" />#}
+{#             </a>#}
+        <div class="blog-info">
+            <span class="label label-primary">发表时间:{{ bll.blogtime }}</span>
+            <span class="label label-success">阅读数:{{ bll.blogread }}</span>
+            <span class="label label-danger">评论数:{{ come.forloop.counter }}</span>
+            <span class="label label-info">
+                <i class="fa fa-thumbs-up" id="{{ bll.blogid }}">&nbsp;{{ bll.blogzan }}</i>
+                </span>&nbsp;
+                <span class="label label-info">
+                    &nbsp;
+        <i class="fa fa-thumbs-down"  id="{{ bll.blogid }}">&nbsp;{{ bll.bloglow }}</i>
+            </span>
+        </div>
+        <div class="blog-txt" >
+            {{ bll.blogcontenta }}<br><br>
+            {{ bll.blogcontentb }}<br><br>
+            {{ bll.blogcontentc }}
+        </div>
+    </div>
+        <p>评论：(评论后刷新页面即可看到评论信息！)</p>
+        {% for pll in pl %}
+        <div class="blog-pin" style="margin-top:20px;margin-left:6px;margin-right:6px;border:1px solid silver;">
+            {{ forloop.counter }}楼：
+            <br>{{ pll.bloggre }}
+        </div>
+        {% endfor %}
+
+    <form>
+    <p>评论：</p>
+    <textarea id="blogtxt"  cols="30" rows="4"></textarea>
+    <br>
+    <input id="but" name="{{ bll.blogid }}" type="button" value="提交">
+    </form>
+
+{% endfor %}
+{% endblock blog %}

@@ -1,0 +1,57 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>管理员验证</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLE CSS -->
+    <link href="/static/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE CSS -->
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <!-- jquery-3.3.1.js -->
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="/static/js/zan.js"></script>
+
+</head>
+<body>
+
+
+    <section class="header-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="/static/img/person.jpg" class="img-circle img-responsive" />
+                </div>
+                <div class="col-md-5 text-center">
+                    <h1><strong>hukai</strong></h1>
+                    <h4>我是一个小菜鸟</h4>
+                </div>
+                <div class="col-md-5">
+                    <h3>简介:</h3>
+                    我是一名正在学习Python的一名小菜鸟，在这个博客我将和大家一起分享
+                    学习Python的方法和一些有趣的小实验。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系我：<i><strong>hk@flyhki.com</strong></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="login">
+        <form action="/blogapp/comecheck/" method="post" >
+            管理员账号：<input type="text" name="user"><br>
+            密码：<input type="password" name="password"><br>
+            <input type="submit" value="提交">
+        </form>
+
+    </div>
+
+
+</body>
+</html>

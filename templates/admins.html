@@ -1,0 +1,109 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>博客管理员</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLE CSS -->
+    <link href="/static/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE CSS -->
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="/static/js/admin.js"></script>
+</head>
+<body>
+
+
+    <section class="header-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="/blogapp/blog/1/"><img src="/static/img/person.jpg" class="img-circle img-responsive" /></a>
+                </div>
+                <div class="col-md-5 text-center">
+                    <h1><strong>亲爱的管理员您好！</strong></h1>
+                    <h4>这里是hk的博客管理员界面</h4>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--HOME SECTION END-->
+
+    <section>
+        {% block admin %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 spon-txt">
+                    <span>管理员操作：</span>
+                    <h4> <input id="addbut" type="button" value="添加博客"></h4>
+                </div>
+{#                <div class="col-md-10">#}
+{#                </div>#}
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    {% for bll in bl %}
+                    <div class="blog-main">
+                        <div class="heading-blog">
+                            {{ bll.blogtitle }}
+                        </div>
+                         <a href="/static/singlepost.html">
+
+                             </a>
+{#                        <div class="blog-info">#}
+{#                            <span class="label label-primary">发表时间</span>#}
+{#                            <span class="label label-success">阅读数1000</span>#}
+{#                            <span class="label label-danger">评论数251</span>#}
+{#                            <span class="label label-info">#}
+{#                                <i class="fa fa-thumbs-up"></i>+ 10#}
+{#                                </span>#}
+{#                                <span class="label label-info">#}
+{#                                    &nbsp;#}
+{#                        <i class="fa fa-thumbs-down"></i>-3#}
+{#                            </span>#}
+{#                        </div>#}
+                        <div class="blog-txt">
+                            {{ bll.blogcontenta }}······
+                        </div>
+                        <input type="button" value="修改">
+                        <input type="button" id="delbut" name="{{ bll.blogid }}" value="删除">
+                        <br>
+
+                    </div>
+                    {% endfor %}
+                    <nav>
+                        <ul class="pagination">
+                            <li class="disabled"><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">2 <span class="sr-only"></span></a></li>
+                            <li><a href="#">3 <span class="sr-only"></span></a></li>
+                            <li><a href="#">4 <span class="sr-only"></span></a></li>
+                            <li><a href="#">5 <span class="sr-only"></span></a></li>
+                            <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+        </div>
+    {% endblock %}
+    </section>
+
+    <hr />
+
+
+</body>
+</html>
