@@ -32,7 +32,7 @@ $(document).ready(function () {
     $('#but').click(function () {
         txt=$('#blogtxt').val();
         nums=$(this).attr('name');
-        $.ajax({type:"POST",url:"/blogapp/addpin/"+nums+"/", data: {txt:txt},
+        $.ajax({type:"POST",url:"/addpin/"+nums+"/", data: {txt:txt},
             success:function(result) {
                 $("#blogtxt").val(result);
                 alert("评论成功！")

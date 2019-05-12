@@ -25,7 +25,7 @@ SECRET_KEY = '&#!jx3r-he&*%dwubg%u4&q5n&1agp9)cnbpz@4h7(gkxwahul'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogapp',
 ]
-
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog',
+        'NAME': 'test',
         'USER':'root',
         'PASSWORD':'admin123456',
         'HOST':'localhost',

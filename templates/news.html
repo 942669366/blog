@@ -1,7 +1,23 @@
 {% extends 'blog.html' %}
 {% load static from staticfiles %}
 {% block blog %}
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script>
+    $(document).ready(function () {
+    $('#but').click(function () {
+        txt=$('#blogtxt').val();
+        nums=$(this).attr('name');
+        $.ajax({type:"POST",url:"/addpin/"+nums+"/", data: {txt:txt},
+            success:function(result) {
+                $("#blogtxt").val(result);
+                alert("评论成功！")
+            }
+        })
+    })
+})
+    </script>
     {% for bll in bl %}
+
     <div class="blog-main">
         <div class="heading-blog">
             {{ bll.blogtitle }}

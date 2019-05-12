@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/editor/kindeditor-all-min.js"></script>
+    <script src="/static/js/editor/lang/zh-CN.js"></script>
+    <script src="/static/js/editor/themes/default/default.css"></script>
+    <script>
+        KindEditor.ready(function (k) {
+            window.editor = k.create('#editor_id',{
+                resizeType:1,
+                allowPreviewEmoticons : false,
+                allowImageRemote : false,
+                {#处理url#}
+                uploadJson : '/upload/kindeditor',
+
+            });
+        })
+
+
+    </script>
+</head>
+<body>
+<textarea id="editor_id" name="content" style="height: 400px" >{{ text }}</textarea>
+</body>
+</html>

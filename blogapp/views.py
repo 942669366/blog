@@ -3,7 +3,13 @@ from blogapp.models import blogtxt,comment,admin
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 import time
+
 # Create your views here.
+def test(request):
+    return render(request,"test.html")
+def test1(request):
+    lis=["123",'456']
+    return render(request,"test1.html",{"lis":lis})
 def blog(request,pagenum):#进入博客主页面
     bl = blogtxt.objects.filter()
     # nua=blogtxt.objects.filter(blogtype=0)
@@ -23,6 +29,32 @@ def blog(request,pagenum):#进入博客主页面
     page=pi.page(pagenum)
     pnum=page.number
     sslist=page.object_list
+    print(pnums, pnum)
+    testt = ["你好"]
+    # come=comment.objects.filter(blogtype=pid)
+    return render(request,'blog.html',{"bl":bl,"sslist":sslist,"pnum":pnum,"pnums":pnums,"come":come,"tong":tong,"pjc":pjc,"pweb":pweb,"ppa":ppa,"testt":testt})
+
+def blogg(request):#进入博客主页面
+    pagenum=1
+    bl = blogtxt.objects.filter()
+    # nua=blogtxt.objects.filter(blogtype=0)
+    # nub=blogtxt.objects.filter(blogtype=1)
+    # nuc=blogtxt.objects.filter(blogtype=2)
+    # nud=blogtxt.objects.filter(blogtype=3)
+    come=[]
+    for bli in bl:
+        pid=bli.blogid
+        come.append(len(comment.objects.filter(blogtype=pid)))
+    tong=len(blogtxt.objects.filter(blogtype=0))
+    pjc=len(blogtxt.objects.filter(blogtype=1))
+    pweb=len(blogtxt.objects.filter(blogtype=2))
+    ppa=len(blogtxt.objects.filter(blogtype=3))
+    pi=Paginator(bl,3)
+    pnums=pi.num_pages
+    page=pi.page(pagenum)
+    pnum=page.number
+    sslist=page.object_list
+
     # come=comment.objects.filter(blogtype=pid)
     return render(request,'blog.html',{"bl":bl,"sslist":sslist,"pnum":pnum,"pnums":pnums,"come":come,"tong":tong,"pjc":pjc,"pweb":pweb,"ppa":ppa})
 
@@ -114,6 +146,7 @@ def dele(request,blogid):
     bl = blogtxt.objects.filter(blogid=blogid)
     bl.delete()
     return render(request,"admins.html")
+
 def addzan(request,num):#增加zan数
     bl = blogtxt.objects.filter(blogid=num)
     for bll in bl:
@@ -147,4 +180,5 @@ def comecheck(request):
         return render(request, "admins.html", {"bl":bl})
     else:
         return HttpResponse("error")
+
 

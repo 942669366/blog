@@ -4,7 +4,7 @@ $(document).ready(function () {
     })
 })
 $(document).ready(function () {
-    $('#delbut').click(function () {
+    $('.delbut').click(function () {
         num = $(this).attr('name');
         window.location.href="/blogapp/dele/"+num+"/"
     })

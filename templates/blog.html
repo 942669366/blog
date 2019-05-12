@@ -10,7 +10,7 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>hk的博客</title>
+    <title>mzh的博客</title>
     <!-- BOOTSTRAP CORE STYLE CSS -->
     <link href="/static/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLE CSS -->
@@ -24,10 +24,12 @@
     function jump() {
         pnum=document.getElementById("pn").value
         if(pnum>{{ pnums }}|pnum<1){
+            a='{{ testt.0 }}'
+            alert(a)
             alert("请输入正确的页数！")
             document.getElementById("pn").value={{ pnum }}
         }else{
-            location="/blogapp/blog/"+pnum+"/"
+            location="/blog/"+pnum+"/"
         }
     }
 </script>
@@ -42,7 +44,7 @@
                     <img src="/static/img/usr.gif" class="img-circle img-responsive" />
                 </div>
                 <div class="col-md-5 text-center">
-                    <h1><strong>hukai</strong></h1>
+                    <h1><strong>maozhihai</strong></h1>
                     <h4>我是一个小菜鸟</h4>
                 </div>
                 <div class="col-md-5">
@@ -76,9 +78,9 @@
                         {% for bll in sslist %}
                             <div class="blog-main">
                                 <div class="heading-blog">
-                                    <a href="/blogapp/news/{{ bll.blogid }}/">{{ bll.blogtitle }}</a>
+                                    <a href="/news/{{ bll.blogid }}/">{{ bll.blogtitle }}</a>
                                 </div>
-{#                                 <a href="/blogapp/news/{{ bll.blogid }}/">&nbsp&nbsp&nbsp&nbsp{% if {{ bll.blogtype }}==0 %}#}
+{#                                 <a href="/news/{{ bll.blogid }}/">&nbsp&nbsp&nbsp&nbsp{% if {{ bll.blogtype }}==0 %}#}
 {#                                                                                            公告：#}
 {#                                                                                               {% if {{ bll.blogtype }}==1 %}#}
 {#                                                                                                   Python 基础：#}
@@ -105,7 +107,7 @@
                                     </span>
                                 </div>
                                 <div class="blog-txt">
-                                    <a href="/blogapp/news/{{ bll.blogid }}/" style="color: black">
+                                    <a href="/news/{{ bll.blogid }}/" style="color: black">
                                     {{ bll.blogcontenta }}······
                                     </a>
                                 </div>
@@ -116,8 +118,8 @@
                                 <font>首页</font>
                                 <font>上一页</font>
                             {% else %}
-                                <a href="/blogapp/blog/1/">首页</a>
-                                <a href="/blogapp/blog/{{ pnum|add:'-1' }}/">上一页</a>
+                                <a href="/blog/1/">首页</a>
+                                <a href="/blog/{{ pnum|add:'-1' }}/">上一页</a>
                             {% endif %}
                                 <input id="pn" style="width: 20px" type="text" value="{{ pnum }}">/{{ pnums }}
                                 <input type="button" value="跳转" onclick="jump()">
@@ -125,8 +127,8 @@
                                 <font>下一页</font>
                                 <font>尾页</font>
                             {% else %}
-                                <a href="/blogapp/blog/{{ pnum|add:'1' }}/">下一页</a>
-                                <a href="/blogapp/blog/{{ pnums }}/">尾页</a>
+                                <a href="/blog/{{ pnum|add:'1' }}/">下一页</a>
+                                <a href="/blog/{{ pnums }}/">尾页</a>
                             {% endif %}
                         </nav>
 
